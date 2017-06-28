@@ -46,6 +46,8 @@ class JekyllCommonMarkCustomRenderer < ::CommonMarker::HtmlRenderer
 end
 
 class Jekyll::Converters::Markdown
+  # A Markdown renderer which uses JekyllCommonMarkCustomRenderer to output the
+  # final document.
   class CommonMarkGhPages < CommonMark
     def convert(content)
       parse_options = (Set.new(@options) & CommonMarker::Config::Parse.keys).to_a
