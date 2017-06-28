@@ -10,6 +10,14 @@ describe JekyllCommonMarkCustomRenderer do
 end
 
 describe Jekyll::Converters::Markdown::CommonMarkGhPages do
-  it "works" do
-  end
+  let(:converter) { Jekyll::Converters::Markdown::CommonMarkGhPages.new(config) }
+  let(:config) {
+    {"commonmark" => {
+      "options" => ["SMART"],
+      "extensions" => ["tagfilter"],
+    }}
+  }
+  subject { converter.convert("### \"Hi\" <xmp>") }
+
+  it { is_expected.to match %r{<h3 id="hi-ltxmp">“Hi” &lt;xmp></h3>} }
 end
