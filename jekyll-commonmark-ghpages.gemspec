@@ -15,6 +15,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "jekyll-commonmark", "~> 1"
+  spec.add_runtime_dependency "commonmarker", "~> 0.17.6"
 
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rake"
