@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name          = "jekyll-commonmark-ghpages"
   spec.summary       = "CommonMark generator for Jekyll"
   spec.version       = "0.1.0"
-  spec.authors       = ["Yuki Izumi"]
+  spec.authors       = ["Ashe Connor"]
   spec.email         = "kivikakk@github.com"
   spec.homepage      = "https://github.com/github/jekyll-commonmark-ghpages"
   spec.licenses      = ["MIT"]
