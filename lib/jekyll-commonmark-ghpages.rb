@@ -4,9 +4,11 @@
 require "commonmarker"
 require "jekyll"
 require "jekyll-commonmark"
+require "rouge"
 
-# A customized version of CommonMarker::HtmlRenderer which outputs
-# Kramdown-style header IDs.
+# A customized version of CommonMarker::HtmlRenderer which:
+# - outputs Kramdown-style header IDs.
+# - performs syntax highlighting in code blocks.
 class JekyllCommonMarkCustomRenderer < ::CommonMarker::HtmlRenderer
   def header(node)
     block do
@@ -20,6 +22,35 @@ class JekyllCommonMarkCustomRenderer < ::CommonMarker::HtmlRenderer
       out("<h", node.header_level, "#{sourcepos(node)} id=\"#{id}\">",
           content, "</h", node.header_level, ">")
     end
+  end
+
+  def code_block(node)
+    lang = if node.fence_info && !node.fence_info.empty?
+             node.fence_info.split(/\s+/)[0]
+           end
+
+    content = node.string_content
+
+    if lang && lexer = ::Rouge::Lexer.find_fancy(lang, content)
+      block do
+        out("<div class=\"language-#{lang} highlighter-rouge\">")
+        out(::Rouge::Formatters::HTMLLegacy.new(css_class: 'highlight').format(lexer.lex(content)))
+        out("</div>")
+      end
+      return
+    end
+
+    if option_enabled?(:GITHUB_PRE_LANG)
+      out("<pre#{sourcepos(node)}")
+      out(' lang="', lang, '"') if lang
+      out('><code>')
+    else
+      out("<pre#{sourcepos(node)}><code")
+      out(' class="language-', lang, '">') if lang
+      out('>')
+    end
+    out(escape_html(content))
+    out('</code></pre>')
   end
 
   private

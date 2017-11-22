@@ -2,11 +2,19 @@ require "spec_helper"
 
 describe JekyllCommonMarkCustomRenderer do
   let(:renderer) { JekyllCommonMarkCustomRenderer.new }
-  let(:doc) { CommonMarker.render_doc("# Hello\n\n## Hi, world!") }
   subject { renderer.render(doc) }
 
-  it { is_expected.to match %r{<h1 id="hello">Hello</h1>} }
-  it { is_expected.to match %r{<h2 id="hi-world">Hi, world!</h2>} }
+  context "headers" do
+    let(:doc) { CommonMarker.render_doc("# Hello\n\n## Hi, world!") }
+    it { is_expected.to match %r{<h1 id="hello">Hello</h1>} }
+    it { is_expected.to match %r{<h2 id="hi-world">Hi, world!</h2>} }
+  end
+
+  context "code blocks" do
+    let(:doc) { CommonMarker.render_doc("```ruby\nputs \"Hi!\"\n```\n") }
+    it { is_expected.to match %r{<div class="language-ruby highlighter-rouge">} }
+    it { is_expected.to match %r{<code><span class=".*?">puts</span> <span class=".*?">"Hi!"</span>} }
+  end
 end
 
 describe Jekyll::Converters::Markdown::CommonMarkGhPages do
