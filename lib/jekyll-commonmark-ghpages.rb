@@ -95,10 +95,10 @@ class Jekyll::Converters::Markdown
 end
 
 class Jekyll::Tags::HighlightBlock
-  alias render_without_ghpages_hack render
+  alias render_rouge_without_ghpages_hack render_rouge
 
-  def render(context)
-    render_without_ghpages_hack(context)
-      #.gsub(/\r?\n/, "<br>")
+  def render_rouge(context)
+    render_rouge_without_ghpages_hack(context)
+      .gsub(/\r?\n/, "<br>")
   end
 end
