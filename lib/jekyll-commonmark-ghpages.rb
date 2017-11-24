@@ -93,3 +93,12 @@ class Jekyll::Converters::Markdown
     end
   end
 end
+
+class Jekyll::Tags::HighlightBlock
+  alias render_without_ghpages_hack render
+
+  def render(context)
+    render_without_ghpages_hack(context)
+      #.gsub(/\r?\n/, "<br>")
+  end
+end
