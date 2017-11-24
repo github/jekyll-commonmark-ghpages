@@ -43,10 +43,13 @@ describe Jekyll::Renderer do
                        "\n" \
                        "{% highlight markdown %}\n" \
                        "**Hey**\n" \
+                       "\n" \
+                       "**Hello**\n" \
                        "{% endhighlight %}\n"
     out = Jekyll::Renderer.new(site, document).run
     expect(out).to match %r(<p><strong>Hi</strong></p>)
     expect(out).to match %r(<span class="gs">\*\*Yo\*\*</span>)
     expect(out).to match %r(<span class="gs">\*\*Hey\*\*</span>)
+    expect(out).to match %r(<span class="gs">\*\*Hello\*\*</span>)
   end
 end
