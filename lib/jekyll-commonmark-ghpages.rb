@@ -86,10 +86,11 @@ class Jekyll::Converters::Markdown
       parse_options = :DEFAULT if parse_options.empty?
       render_options = :DEFAULT if render_options.empty?
       doc = CommonMarker.render_doc(content, parse_options, @extensions)
-      JekyllCommonMarkCustomRenderer.new(
+      html = JekyllCommonMarkCustomRenderer.new(
         :options => render_options,
         :extensions => @extensions
       ).render(doc)
+      html.gsub(/<br data-jekyll-commonmark-ghpages>/, "\n")
     end
   end
 end
@@ -99,6 +100,6 @@ class Jekyll::Tags::HighlightBlock
 
   def render_rouge(context)
     render_rouge_without_ghpages_hack(context)
-      .gsub(/\r?\n/, "<br>")
+      .gsub(/\r?\n/, "<br data-jekyll-commonmark-ghpages>")
   end
 end
