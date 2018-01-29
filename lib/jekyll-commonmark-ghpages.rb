@@ -26,7 +26,7 @@ class JekyllCommonMarkCustomRenderer < ::CommonMarker::HtmlRenderer
 
   def code_block(node)
     lang = if node.fence_info && !node.fence_info.empty?
-             node.fence_info.split(/\s+/)[0]
+             node.fence_info.split(/[\s,]/)[0]
            end
 
     content = node.string_content
