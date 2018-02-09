@@ -90,7 +90,7 @@ class Jekyll::Converters::Markdown
         :options => render_options,
         :extensions => @extensions
       ).render(doc)
-      html.gsub(/<br data-jekyll-commonmark-ghpages>/, "\n")
+      html.gsub(/<br data-jekyll-commonmark-ghpages />/, "\n")
     end
   end
 end
