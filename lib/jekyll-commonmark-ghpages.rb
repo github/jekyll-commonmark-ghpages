@@ -60,7 +60,7 @@ class JekyllCommonMarkCustomRenderer < ::CommonMarker::HtmlRenderer
     gen_id = "section" if gen_id.empty?
     @used_ids ||= {}
     if @used_ids.key?(gen_id)
-      gen_id += "-" << (@used_ids[gen_id] += 1).to_s
+      gen_id += "-" + (@used_ids[gen_id] += 1).to_s
     else
       @used_ids[gen_id] = 0
     end
