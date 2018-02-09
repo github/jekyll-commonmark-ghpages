@@ -100,6 +100,6 @@ class Jekyll::Tags::HighlightBlock
 
   def render_rouge(context)
     render_rouge_without_ghpages_hack(context)
-      .gsub(/\r?\n/, "<br data-jekyll-commonmark-ghpages>")
+      .gsub(/\r?\n/, "<br data-jekyll-commonmark-ghpages />")
   end
 end
