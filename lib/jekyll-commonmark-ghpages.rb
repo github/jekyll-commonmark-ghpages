@@ -90,7 +90,7 @@ class Jekyll::Converters::Markdown
         :options => render_options,
         :extensions => @extensions
       ).render(doc)
-      html.gsub(/<br data-jekyll-commonmark-ghpages />/, "\n")
+      html.gsub(/<br data-jekyll-commonmark-ghpages=\"true\" \/>/, "\n")
     end
   end
 end
@@ -100,6 +100,6 @@ class Jekyll::Tags::HighlightBlock
 
   def render_rouge(context)
     render_rouge_without_ghpages_hack(context)
-      .gsub(/\r?\n/, "<br data-jekyll-commonmark-ghpages />")
+      .gsub(/\r?\n/, "<br data-jekyll-commonmark-ghpages=\"true\" \/>")
   end
 end
