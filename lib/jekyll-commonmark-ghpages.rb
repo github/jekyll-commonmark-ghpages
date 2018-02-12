@@ -97,9 +97,25 @@ end
 
 class Jekyll::Tags::HighlightBlock
   alias render_rouge_without_ghpages_hack render_rouge
+  alias render_without_ghpages_hack render
+
+  def render(context)
+    @render_ghpages_hack_context = context
+    render_without_ghpages_hack(context)
+  end
 
   def render_rouge(context)
-    render_rouge_without_ghpages_hack(context)
-      .gsub(/\r?\n/, "<br data-jekyll-commonmark-ghpages>")
+    rendered = render_rouge_without_ghpages_hack(context)
+
+    processor = @render_ghpages_hack_context
+      .registers[:site]
+      .find_converter_instance(Jekyll::Converters::Markdown)
+      .get_processor
+
+    if processor.is_a?(Jekyll::Converters::Markdown::CommonMarkGhPages)
+      rendered.gsub!(/\r?\n/, "<br data-jekyll-commonmark-ghpages>")
+    end
+
+    rendered
   end
 end
