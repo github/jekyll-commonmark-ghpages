@@ -31,5 +31,5 @@ To specify extensions and options for use in converting Markdown to HTML, supply
 ```yaml
 commonmark:
   options: ["SMART", "FOOTNOTES"]
-  extensions: ["strikethrough", "autolink", "tables"]
+  extensions: ["strikethrough", "autolink", "table"]
 ```
