@@ -81,13 +81,9 @@ class Jekyll::Converters::Markdown
   # final document.
   class CommonMarkGhPages < CommonMark
     def convert(content)
-      parse_options = (Set.new(@options) & CommonMarker::Config::Parse.keys).to_a
-      render_options = (Set.new(@options) & CommonMarker::Config::Render.keys).to_a
-      parse_options = :DEFAULT if parse_options.empty?
-      render_options = :DEFAULT if render_options.empty?
-      doc = CommonMarker.render_doc(content, parse_options, @extensions)
+      doc = CommonMarker.render_doc(content, @parse_options, @extensions)
       html = JekyllCommonMarkCustomRenderer.new(
-        :options => render_options,
+        :options => @render_options,
         :extensions => @extensions
       ).render(doc)
       html.gsub(/<br data-jekyll-commonmark-ghpages>/, "\n")
