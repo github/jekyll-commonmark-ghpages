@@ -27,7 +27,7 @@ describe Jekyll::Converters::Markdown::CommonMarkGhPages do
   }
   subject { converter.convert("### \"Hi\" <xmp>[^nb]\n\n[^nb]: Yes.\n") }
 
-  it { is_expected.to match %r{<h3 id="[^"]*">“Hi” &lt;xmp><sup[^>]*><a href="#fn1"[^>]*>\[1\]</a></sup></h3>\n<section class="footnotes">\n<ol>\n<li id="fn1">\n<p>Yes. <a href="#fnref1".*</a></p>} }
+  it { is_expected.to match %r{<h3 id="[^"]*">“Hi” &lt;xmp><sup[^>]*><a href="#fn1"[^>]*>1</a></sup></h3>\n<section class="footnotes">\n<ol>\n<li id="fn1">\n<p>Yes. <a href="#fnref1".*</a></p>} }
 end
 
 describe Jekyll::Renderer do
