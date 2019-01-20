@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "jekyll-commonmark", "~> 1.2"
   spec.add_runtime_dependency "commonmarker", "~> 0.17.6"
-  spec.add_runtime_dependency "rouge", "~> 2"
+  spec.add_runtime_dependency "rouge", ">= 2.0", "< 4.0"
 
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rake"
