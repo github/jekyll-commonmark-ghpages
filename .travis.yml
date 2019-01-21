@@ -3,8 +3,6 @@ cache: bundler
 rvm:
   - 2.4
   - 2.3
-  - 2.2
-  - 2.1
 git:
   depth: 1
 
