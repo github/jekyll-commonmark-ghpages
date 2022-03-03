@@ -21,7 +21,7 @@ describe Jekyll::Converters::Markdown::CommonMarkGhPages do
   let(:converter) { Jekyll::Converters::Markdown::CommonMarkGhPages.new(config) }
   let(:config) {
     {"commonmark" => {
-      "options" => ["SMART", "FOOTNOTES"],
+      "options" => ["UNSAFE", "SMART", "FOOTNOTES"],
       "extensions" => ["tagfilter"],
     }}
   }
@@ -32,7 +32,7 @@ end
 
 describe Jekyll::Renderer do
   it "should not re-process markdown in a liquid tag" do
-    site = Jekyll::Site.new(Jekyll.configuration("markdown" => "CommonMarkGhPages"))
+    site = Jekyll::Site.new(Jekyll.configuration("markdown" => "CommonMarkGhPages", "commonmark" => { "options" => ["UNSAFE"] }))
     collection = Jekyll::Collection.new(site, "pages")
     document = Jekyll::Document.new("hello.md", site: site, collection: collection)
     document.content = "**Hi**\n" \
