@@ -13,5 +13,7 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
+      - name: install bundler
+        run: gem install bundler
       - name: script/cibuild
         run: script/cibuild
