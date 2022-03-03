@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Update gems
+gem update --system 3.2.3
+
 # Install bundler
 gem install bundler
 
