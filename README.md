@@ -30,6 +30,8 @@ To specify extensions and options for use in converting Markdown to HTML, supply
 
 ```yaml
 commonmark:
-  options: ["SMART", "FOOTNOTES"]
+  options: ["UNSAFE", "SMART", "FOOTNOTES"]
   extensions: ["strikethrough", "autolink", "table", "tagfilter"]
 ```
+
+⚠ The `UNSAFE` option is required for HTML rendering.
