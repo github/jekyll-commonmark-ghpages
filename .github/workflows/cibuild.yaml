@@ -1,5 +1,9 @@
 on: push
 name: cibuild
+
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Test
@@ -10,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@540484a3c0f308b08619664ec40bf6c371d172c3 # v1.205.0
         with:
           ruby-version: ${{ matrix.ruby }}
       - name: script/cibuild
